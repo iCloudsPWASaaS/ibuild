@@ -193,13 +193,16 @@ export function Header({ isWhite = false, loading = false, brandName }: { isWhit
                                 </span>
                             </div>
                         ) : (
-                            <div className="flex flex-col leading-none gap-1">
-                                <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
-                                    IClouds AI
-                                </span>
-                                <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
-                                    AI services made simple
-                                </span>
+                            <div className="flex items-center gap-3">
+                                <img src="/logo.png" alt="IClouds AI logo" className="h-10 w-10 object-contain" />
+                                <div className="flex flex-col leading-none gap-1">
+                                    <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
+                                        IClouds AI
+                                    </span>
+                                    <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
+                                        AI services made simple
+                                    </span>
+                                </div>
                             </div>
                         )}
                     </Link>

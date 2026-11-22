@@ -182,13 +182,16 @@ export function SignUpPage() {
             <div className="agi-theme min-h-screen bg-background text-[#0f172a] flex items-center justify-center px-4 py-12">
                 <div className="w-full max-w-md">
                     <div className="mb-8 text-center">
-                        <a href={HOME_ROUTE} className="inline-flex flex-col items-center justify-center gap-1 mb-6">
-                            <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
-                                IClouds AI
-                            </span>
-                            <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
-                                AI services made simple
-                            </span>
+                        <a href={HOME_ROUTE} className="inline-flex items-center justify-center gap-3 mb-6">
+                            <img src="/logo.png" alt="IClouds AI logo" className="h-10 w-10 object-contain" />
+                            <div className="flex flex-col items-start gap-1">
+                                <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
+                                    IClouds AI
+                                </span>
+                                <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
+                                    AI services made simple
+                                </span>
+                            </div>
                         </a>
                         <h1 className="text-3xl md:text-4xl font-bold text-[#0f172a]">Create your account</h1>
                         <p className="mt-3 text-base text-[#475569]">

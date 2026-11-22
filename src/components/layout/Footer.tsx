@@ -63,9 +63,12 @@ export function Footer({ brandName }: { brandName?: string }) {
                 <div className="grid lg:grid-cols-5 gap-12 mb-5 md:mb-24">
                     <div className="lg:col-span-2 flex flex-col items-start">
                         <Link to="/" className="inline-block mb-6">
-                           <div className="flex flex-col gap-1">
-                                <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">{displayBrandName}</span>
-                               <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[var(--footer-text-muted)]">AI services made simple</span>
+                           <div className="flex items-center gap-3">
+                                <img src="/logo.png" alt="IClouds AI logo" className="h-10 w-10 object-contain" />
+                                <div className="flex flex-col gap-1">
+                                    <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">{displayBrandName}</span>
+                                    <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[var(--footer-text-muted)]">AI services made simple</span>
+                                </div>
                            </div>
                         </Link>
                         <p className="text-sm text-[var(--footer-text-muted)] max-w-sm leading-relaxed">
