@@ -183,7 +183,7 @@ export function SignUpPage() {
                 <div className="w-full max-w-md">
                     <div className="mb-8 text-center">
                         <a href={HOME_ROUTE} className="inline-flex items-center justify-center gap-3 mb-6">
-                            <img src="/logo.png" alt="IClouds AI logo" className="h-10 w-10 object-contain" />
+                            <img src="/logo.png" alt="IClouds AI logo" className="h-12 w-12 object-contain" />
                             <div className="flex flex-col items-start gap-1">
                                 <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
                                     IClouds AI

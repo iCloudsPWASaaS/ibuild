@@ -157,13 +157,16 @@ export function Header({ isWhite = false, loading = false, brandName }: { isWhit
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <Link to={HOME_ROUTE} className="flex items-center gap-2" onClick={closeMenu}>
                         {brandName ? (
-                            <div className="flex flex-col leading-none gap-1">
-                                <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
-                                    {brandName}
-                                </span>
-                                <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
-                                    AI services made simple
-                                </span>
+                            <div className="flex items-center gap-3">
+                                <img src="/logo.png" alt="IClouds AI logo" className="h-12 w-12 object-contain" />
+                                <div className="flex flex-col leading-none gap-1">
+                                    <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
+                                        {brandName}
+                                    </span>
+                                    <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-muted-foreground">
+                                        AI services made simple
+                                    </span>
+                                </div>
                             </div>
                         ) : subdomain === "ipro" ? (
                             <div className="flex flex-col leading-none gap-0.5">
@@ -194,7 +197,7 @@ export function Header({ isWhite = false, loading = false, brandName }: { isWhit
                             </div>
                         ) : (
                             <div className="flex items-center gap-3">
-                                <img src="/logo.png" alt="IClouds AI logo" className="h-10 w-10 object-contain" />
+                                <img src="/logo.png" alt="IClouds AI logo" className="h-12 w-12 object-contain" />
                                 <div className="flex flex-col leading-none gap-1">
                                     <span className="agi-display text-2xl tracking-[0.16em] uppercase text-primary">
                                         IClouds AI
