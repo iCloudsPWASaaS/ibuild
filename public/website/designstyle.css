@@ -1,0 +1,91 @@
+[data-design-style="modern"] {
+    --shadow-sm-style: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md-style: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg-style: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl-style: 0 20px 25px -5px rgb(0 0 0 / 0.15),
+        0 8px 10px -6px rgb(0 0 0 / 0.15);
+    --shadow-2xl-style: 0 25px 50px -12px rgb(0 0 0 / 0.2);
+    --shadow-none-style: 0 0 #0000;
+
+    --border-width: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 4px;
+
+    --section-heading-font: 'fontBold';
+    --text-4xl-tracking: -0.025em;
+    --text-5xl-tracking: -0.03em;
+}
+
+[data-design-style="bold"] {
+    --shadow-sm-style: 0 4px 6px -1px rgb(0 0 0 / 0.12),
+        0 2px 4px -2px rgb(0 0 0 / 0.12);
+    --shadow-md-style: 0 10px 15px -3px rgb(0 0 0 / 0.15),
+        0 4px 6px -4px rgb(0 0 0 / 0.15);
+    --shadow-lg-style: 0 20px 25px -5px rgb(0 0 0 / 0.18),
+        0 8px 10px -6px rgb(0 0 0 / 0.18);
+    --shadow-xl-style: 0 25px 50px -12px rgb(0 0 0 / 0.22);
+    --shadow-2xl-style: 0 35px 60px -12px rgb(0 0 0 / 0.28);
+    --shadow-none-style: 0 0 #0000;
+
+    --border-width: 2px;
+    --border-width-2: 3px;
+    --border-width-4: 5px;
+
+    --section-heading-font: 'fontExtraBold';
+    --text-4xl-tracking: -0.03em;
+    --text-5xl-tracking: -0.04em;
+
+}
+
+[data-design-style="elegant"] {
+    --shadow-sm-style: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+    --shadow-md-style: 0 4px 8px -2px rgb(0 0 0 / 0.06);
+    --shadow-lg-style: 0 8px 16px -4px rgb(0 0 0 / 0.08);
+    --shadow-xl-style: 0 12px 24px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl-style: 0 16px 32px -8px rgb(0 0 0 / 0.12);
+    --shadow-none-style: 0 0 #0000;
+
+    --border-width: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 3px;
+
+    --section-heading-font: 'fontSemiBold';
+    --text-4xl-tracking: -0.015em;
+    --text-5xl-tracking: -0.02em;
+}
+
+[data-design-style="creative"] {
+    --shadow-sm-style: 0 2px 6px 0 rgb(0 0 0 / 0.08);
+    --shadow-md-style: 0 8px 14px -3px rgb(0 0 0 / 0.12);
+    --shadow-lg-style: 0 14px 24px -6px rgb(0 0 0 / 0.16);
+    --shadow-xl-style: 0 20px 32px -8px rgb(0 0 0 / 0.18);
+    --shadow-2xl-style: 0 28px 48px -12px rgb(0 0 0 / 0.22);
+    --shadow-none-style: 0 0 #0000;
+
+    --border-width: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 4px;
+
+    --section-heading-font: 'fontExtraBold';
+    --text-4xl-tracking: -0.02em;
+    --text-5xl-tracking: -0.025em;
+}
+
+[data-design-style="corporate"] {
+    --shadow-sm-style: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+    --shadow-md-style: 0 4px 6px -1px rgb(15 23 42 / 0.06);
+    --shadow-lg-style: 0 8px 12px -3px rgb(15 23 42 / 0.08);
+    --shadow-xl-style: 0 12px 20px -4px rgb(15 23 42 / 0.1);
+    --shadow-2xl-style: 0 20px 30px -8px rgb(15 23 42 / 0.12);
+    --shadow-none-style: 0 0 #0000;
+
+    --border-width: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 4px;
+
+    --section-heading-font: 'fontMedium';
+    --text-4xl-tracking: -0.01em;
+    --text-5xl-tracking: -0.015em;
+}

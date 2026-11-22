@@ -1,0 +1,5 @@
+@import './tailwind.css';
+@import './theme.css';
+
+/* Section CSS */
+@import "../../public/website/animations.css";

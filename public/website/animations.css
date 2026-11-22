@@ -1,0 +1,2802 @@
+/* =================================
+   Base Scroll Animation
+================================= */
+
+.scroll-animation {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* When element becomes visible */
+.scroll-show {
+  opacity: 1;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animation {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* =================================
+   Fade
+================================= */
+
+.scroll-show.scroll-fade {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+
+/* =================================
+   Fade Up Variants
+================================= */
+
+/* Subtle */
+.scroll-fade-up-subtle {
+  transform: translateY(15px);
+}
+
+.scroll-show.scroll-fade-up-subtle {
+  animation: fadeUpSubtle 0.6s ease forwards;
+}
+
+@keyframes fadeUpSubtle {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* Normal */
+.scroll-fade-up {
+  transform: translateY(40px);
+}
+
+.scroll-show.scroll-fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Strong */
+.scroll-fade-up-strong {
+  transform: translateY(60px);
+}
+
+.scroll-show.scroll-fade-up-strong {
+  animation: fadeUpStrong 1s ease forwards;
+}
+
+@keyframes fadeUpStrong {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* =================================
+   Slide Animations
+================================= */
+
+.scroll-slide-left {
+  transform: translateX(-50px);
+}
+
+.scroll-show.scroll-slide-left {
+  animation: slideLeft 0.8s ease forwards;
+}
+
+@keyframes slideLeft {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+.scroll-slide-right {
+  transform: translateX(50px);
+}
+
+.scroll-show.scroll-slide-right {
+  animation: slideRight 0.8s ease forwards;
+}
+
+@keyframes slideRight {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* =================================
+   Scale
+================================= */
+
+.scroll-scale {
+  transform: scale(0.85);
+}
+
+.scroll-show.scroll-scale {
+  animation: scaleIn 0.6s ease forwards;
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =================================
+   Floating (continuous animation)
+================================= */
+
+.scroll-show.scroll-float {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+
+/* =================================
+   Animation Delays
+================================= */
+
+.scroll-show.delay-100 { animation-delay: 0.1s !important; }
+.scroll-show.delay-200 { animation-delay: 0.2s !important; }
+.scroll-show.delay-300 { animation-delay: 0.3s !important; }
+.scroll-show.delay-400 { animation-delay: 0.4s !important; }
+.scroll-show.delay-500 { animation-delay: 0.5s !important; }
+.scroll-show.delay-600 { animation-delay: 0.6s !important; }
+.scroll-show.delay-700 { animation-delay: 0.7s !important; }
+.scroll-show.delay-800 { animation-delay: 0.8s !important; }
+.scroll-show.delay-900 { animation-delay: 0.9s !important; }
+.scroll-show.delay-1000 { animation-delay: 1s !important; }
+.scroll-show.delay-1100 { animation-delay: 1.1s !important; }
+.scroll-show.delay-1200 { animation-delay: 1.2s !important; }
+.scroll-show.delay-1300 { animation-delay: 1.3s !important; }
+.scroll-show.delay-1400 { animation-delay: 1.4s !important; }
+.scroll-show.delay-1500 { animation-delay: 1.5s !important; }
+.scroll-show.delay-1600 { animation-delay: 1.6s !important; }
+.scroll-show.delay-1700 { animation-delay: 1.7s !important; }
+.scroll-show.delay-1800 { animation-delay: 1.8s !important; }
+.scroll-show.delay-1900 { animation-delay: 1.9s !important; }
+.scroll-show.delay-2000 { animation-delay: 2s !important; }
+
+
+
+.animate-divider {
+  width: 0;
+  animation: dividerGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes dividerGrow {
+  to {
+    width: 100%;
+  }
+}
+/* =================================
+   Fade + Scale Animation (like motion.div)
+================================= */
+
+.scroll-fade-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  will-change: transform, opacity;
+}
+
+.scroll-show.scroll-fade-scale {
+  animation: fadeScaleIn 0.8s ease forwards;
+}
+
+@keyframes fadeScaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.features-scroll-fade-scale {
+  transform: scale(0.9);
+}
+
+.scroll-show.features-scroll-fade-scale {
+  animation: fadeScaleFeatures 0.8s ease forwards;
+}
+
+@keyframes fadeScaleFeatures {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* =================================
+   Slider Animation (replaces AnimatePresence)
+================================= */
+
+.slider-animation {
+  opacity: 0;
+  animation: sliderFade 0.7s ease-in-out forwards;
+}
+
+@keyframes sliderFade {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-enter-right {
+  transform: translateX(1000px);
+  animation: slideFromRight 0.7s ease-in-out forwards;
+}
+
+@keyframes slideFromRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-enter-left {
+  transform: translateX(-1000px);
+  animation: slideFromLeft 0.7s ease-in-out forwards;
+}
+
+@keyframes slideFromLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* =================================
+   Gallery Grid Item Animation
+================================= */
+
+.gallery-item.scroll-show {
+  animation: fadeScaleIn 0.6s ease forwards;
+}
+
+/* Hover effect same as motion whileHover */
+.gallery-item:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* =================================
+   Lightbox Modal Animation
+================================= */
+
+.lightbox-overlay {
+  opacity: 0;
+  animation: lightboxFade 0.3s ease forwards;
+}
+
+@keyframes lightboxFade {
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox-content {
+  transform: scale(0.8);
+  animation: lightboxZoom 0.3s ease forwards;
+}
+
+@keyframes lightboxZoom {
+  to {
+    transform: scale(1);
+  }
+}
+.header-sticky {
+  opacity: 0.95;
+}
+
+.header-sticky-top {
+  background: var(--background-color);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-sticky-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #e5e7eb;
+  opacity: 1;
+}
+
+.header-inner {
+  transition: all 0.3s ease;
+}
+
+.header-inner-top {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.header-inner-scrolled {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.hover-border {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease !important;
+  will-change: transform, box-shadow;
+}
+.pricing-card-hover {
+ transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease !important;
+  will-change: transform, box-shadow;
+}
+.pricing-card-hover:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.hover-border:hover {
+  transform: translate3d(0, -10px, 0) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.hover-service {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease,
+              border-color 0.5s ease;
+  will-change: transform, box-shadow;
+}
+
+.hover-service:hover {
+  transform: translateY(-10px);
+}
+
+.pricing-arrow {
+  animation: arrowMove 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowMove {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.product-card-hover {
+  transition: margin-top 0.3s ease, box-shadow 0.3s ease;
+  will-change: margin-top;
+}
+
+.product-card-hover:hover {
+  margin-top: -5px;
+}
+
+.icon-hover-rotate {
+  transform-origin: center;
+  transform: rotate(0deg) scale(1);
+}
+
+.icon-hover-rotate:hover {
+  animation: rotate360 0.6s ease alternate;
+}
+
+@keyframes rotate360 {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+
+
+/* Divider grow width */
+.scroll-grow-width {
+  width: 0;
+  animation: dividerGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes dividerGrow {
+  to { width: 100%; }
+}
+
+/* Price badge scale in */
+.scroll-fade-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  will-change: transform, opacity;
+}
+.scroll-show.scroll-fade-scale {
+  animation: fadeScaleIn 0.8s ease forwards;
+}
+@keyframes fadeScaleIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Bottom arrow animation */
+.animate-arrow-x {
+  display: inline-block;
+  animation: arrowMove 1.5s ease-in-out infinite;
+}
+@keyframes arrowMove {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+.scroll-float {
+  animation: floatY 4s ease-in-out infinite;
+}
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marqueeAnim 30s linear infinite;
+}
+
+@keyframes marqueeAnim {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+.animate-float-custom {
+  opacity: 0.3;
+  animation: floatCustom 6s ease-in-out infinite;
+}
+
+@keyframes floatCustom {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(var(--x), var(--y)) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(calc(var(--x) + 20px), calc(var(--y) - 20px)) scale(1.1);
+  }
+}
+
+.animate-rocking {
+  animation: rockingCard 8s ease-in-out infinite;
+}
+@keyframes rockingCard {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-badge-top {
+  animation: badgeFloatTop 3s ease-in-out infinite;
+}
+@keyframes badgeFloatTop {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.animate-badge-bottom {
+  animation: badgeFloatBottom 4s ease-in-out infinite;
+}
+@keyframes badgeFloatBottom {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(10px) rotate(-5deg); }
+}
+
+.animate-pop-in {
+  animation: popInSpring 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+  transform: scale(0);
+}
+@keyframes popInSpring {
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* =========================================
+   Party / Event Section Animations
+========================================= */
+
+/* 1. Confetti Animation */
+.animate-confetti {
+  position: absolute;
+  animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(20px);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* 2. Spotlight Pulse (Scale + Opacity) */
+.animate-pulse-spotlight {
+  animation: pulseSpotlight 4s ease-in-out infinite;
+}
+@keyframes pulseSpotlight {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+/* 3. Gradient Text Moving Background */
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradientTextMove 5s ease infinite;
+}
+@keyframes gradientTextMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 4. Stats Card Hover Effect */
+.stats-card-hover {
+  transition: transform 0.3s ease;
+}
+.stats-card-hover:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+/* 5. Hero Card 3D Float (Y + RotateY) */
+.animate-float-3d {
+  animation: float3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+@keyframes float3d {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-20px) rotateY(5deg); }
+}
+
+/* 6. Background Circles Rotation */
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+@keyframes spinSlow {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* 7. Inner Grid Pulse */
+.animate-pulse-grid {
+  animation: pulseGrid 3s ease-in-out infinite;
+}
+@keyframes pulseGrid {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+/* 8. Center Icon Wiggle */
+.animate-wiggle-scale {
+  animation: wiggleScale 4s ease-in-out infinite;
+}
+@keyframes wiggleScale {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(10deg) scale(1.1); }
+  75% { transform: rotate(-10deg) scale(1.1); }
+}
+
+/* 9. Floating Small Icons (Up/Down + Rotate) */
+.animate-float-rotate {
+  animation: floatRotate 3s ease-in-out infinite;
+}
+@keyframes floatRotate {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(180deg); }
+}
+
+/* 10. Success Badge Pulse */
+.animate-badge-pulse {
+  animation: badgePulse 3s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1) rotate(0deg) translateX(-50%); }
+  50% { transform: scale(1.1) rotate(10deg) translateX(-50%); }
+}
+
+.animate-float-rock-complex {
+  animation: floatRockComplex 4s ease-in-out infinite;
+}
+@keyframes floatRockComplex {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
+  25% { transform: translate(-50%, -50%) translateY(-10px) rotate(5deg); }
+  75% { transform: translate(-50%, -50%) translateY(0) rotate(-5deg); }
+}
+
+
+.animate-icon-fade {
+  opacity: 0;
+  animation: iconFade 0.3s ease forwards;
+}
+
+@keyframes iconFade {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-float-wrapper {
+  position: absolute;
+  animation: floatRockComplex 4s ease-in-out infinite;
+}
+
+@keyframes floatRockComplex {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
+  25% { transform: translate(-50%, -50%) translateY(-10px) rotate(5deg); }
+  75% { transform: translate(-50%, -50%) translateY(0) rotate(-5deg); }
+}
+
+.animate-pop-in-card {
+  opacity: 0;
+  transform: scale(0); 
+  animation: popInCard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popInCard {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   Dark Tech Hero Animations
+========================================= */
+
+/* 1. Moving Grid Background (Diagonal) */
+.animate-grid-move {
+  background-position: 0% 0%;
+  animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* 2. Glowing Orbs Pulse */
+.animate-orb-pulse {
+  animation: orbPulse 10s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.6; }
+}
+
+/* 3. Stats Card Hover (Replaces whileHover) */
+.stats-card-hover {
+  transition: all 0.3s ease-out;
+}
+.stats-card-hover:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+/* 4. Floating Icons (Opacity + Scale + Y-axis) */
+.animate-float-pulse {
+  animation: floatPulse 4s ease-in-out infinite;
+}
+@keyframes floatPulse {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1) translateY(0); 
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.2) translateY(-20px); 
+  }
+}
+
+/* 5. Code Block Floating (Fade in/out + Move Up) */
+.animate-code-float {
+  animation: codeFloat 8s ease-in-out infinite;
+}
+@keyframes codeFloat {
+  0% { opacity: 0; transform: translateY(50px); }
+  20% { opacity: 0.4; transform: translateY(25px); }
+  80% { opacity: 0.4; transform: translateY(-25px); }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
+
+/* 6. Bottom Gradient Line Move */
+.animate-gradient-line {
+  background-size: 200% auto;
+  animation: gradientLineMove 3s linear infinite;
+}
+@keyframes gradientLineMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+
+/* =========================================
+   Food Hero Animations
+========================================= */
+
+.animate-float-food {
+  animation: floatFood 6s ease-in-out infinite;
+}
+@keyframes floatFood {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+  50% { transform: translateY(-30px) rotate(10deg); opacity: 0.3; }
+}
+
+.animate-spin-slow-linear {
+  animation: spinLinear 30s linear infinite;
+}
+@keyframes spinLinear {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-plate-float {
+  animation: plateFloat 6s ease-in-out infinite;
+}
+@keyframes plateFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.animate-ingredient-float {
+  animation: ingredientFloat 4s ease-in-out infinite;
+}
+@keyframes ingredientFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) translateY(-15px) rotate(180deg); }
+  100% { transform: translate(-50%, -50%) translateY(0) rotate(360deg); }
+}
+
+.animate-star-rise {
+  animation: starRise 3s ease-in-out infinite;
+}
+@keyframes starRise {
+  0% { opacity: 0; transform: scale(0) translateY(0); }
+  50% { opacity: 1; transform: scale(1.5) translateY(-20px); }
+  100% { opacity: 0; transform: scale(0) translateY(-60px); }
+}
+
+.animate-footer-slide {
+  opacity: 0;
+  transform: translateY(100px) translateX(-50%);
+  animation: footerSlide 0.8s ease forwards;
+}
+@keyframes footerSlide {
+  to { opacity: 1; transform: translateY(0) translateX(-50%); }
+}
+
+
+
+/* =========================================
+   Fixed SaaS Hero Animations
+   ========================================= */
+
+.anim-fill-both {
+  animation-fill-mode: both;
+}
+
+
+.animate-orb-1 {
+  animation: orbMove1 10s ease-in-out infinite;
+}
+@keyframes orbMove1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 30px) scale(1.2); }
+}
+
+.animate-orb-2 {
+  animation: orbMove2 12s ease-in-out infinite;
+}
+@keyframes orbMove2 {
+  0%, 100% { transform: translate(0, 0) scale(1.2); }
+  50% { transform: translate(-50px, -30px) scale(1); }
+}
+
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: textShimmer 5s linear infinite;
+}
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.animate-fade-up {
+  opacity: 0; 
+  animation: fadeUp 0.8s ease-out forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.animate-slide-right {
+  opacity: 0;
+  animation: slideRight 0.6s ease-out forwards;
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+
+.animate-scale-up {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+.animate-float-y {
+  animation: floatY 4s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+.animate-bar-grow {
+  height: 0;
+  animation: growBar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes growBar {
+  from { height: 0; }
+}
+
+
+.animate-in-right {
+  opacity: 0;
+  animation: slideInRight 0.8s ease-out forwards;
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Slide In From Left */
+.animate-in-left {
+  opacity: 0;
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+/* Background Medical Cross */
+.animate-cross-float {
+  animation: crossFloat 6s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+@keyframes crossFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 0.7;
+  }
+}
+
+/* Heartbeat bars (ONE TIME ONLY) */
+.animate-hb-bar {
+  transform-origin: bottom;
+  opacity: 0;
+  transform: scaleY(0);
+  background: linear-gradient(to top, var(--primary-color-rgb), var(--primary-color-rgb));
+  animation: hbBarGrow 0.6s ease forwards;
+}
+
+@keyframes hbBarGrow {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Heart rate number pulse */
+.animate-scale-pulse {
+  display: inline-block;
+  animation: heartBeat 2s infinite;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.25); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Active Dot */
+.animate-pulse-grid {
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .5;
+    transform: scale(1.5);
+  }
+}
+
+/* Floating cards */
+.scroll-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+
+/* ===============================
+   Floating Book Pages
+================================ */
+
+.animate-book-pages {
+  animation-name: bookPagesFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes bookPagesFloat {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(var(--randX), -100px) rotate(180deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+/* ===============================
+   Left Column Animation
+================================ */
+
+.animate-left-column {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: leftColumnIn 0.8s ease forwards;
+}
+
+@keyframes leftColumnIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-badge {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: badgeIn 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes badgeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-title {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: titleIn 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes titleIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-desc {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: descIn 0.7s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes descIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-buttons {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: buttonsIn 0.7s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes buttonsIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stats */
+.animate-stats {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: statsIn 0.7s ease forwards;
+}
+
+@keyframes statsIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   Right Column Animation
+================================ */
+
+.animate-right-column {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: rightColumnIn 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes rightColumnIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Main Card Floating */
+.animate-main-card {
+  animation: mainCardFloat 6s ease-in-out infinite;
+}
+
+@keyframes mainCardFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Feature lines */
+.animate-feature {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: featureIn 0.6s ease forwards;
+}
+
+@keyframes featureIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mini floating cards */
+.animate-mini-card {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  animation: miniCardIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             miniCardFloat 3s ease-in-out infinite;
+  animation-delay: inherit, 1.8s;
+}
+
+@keyframes miniCardIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes miniCardFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px) rotate(5deg);
+  }
+}
+
+/* Progress Widget */
+.animate-progress {
+  opacity: 0;
+  transform: translate(-50%, 50px);
+  animation: progressIn 0.7s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes progressIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+}
+
+/* Progress bar */
+.animate-progress-bar {
+  width: 0%;
+  animation: progressFill 1s ease forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes progressFill {
+  to {
+    width: var(--progressWidth);
+  }
+}
+
+/* ===============================
+   Floating Geometric Shapes
+================================ */
+
+.animate-geo-float {
+  opacity: 0.2;
+  animation: geoFloat ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes geoFloat {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(0px, -30px) rotate(180deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+
+/* ===============================
+   Left Column Animations
+================================ */
+
+.animate-left-column {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: leftColumnIn 0.8s ease forwards;
+}
+
+@keyframes leftColumnIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-badge {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: badgeIn 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes badgeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-title {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: titleIn 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes titleIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-desc {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: descIn 0.7s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes descIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-buttons {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: buttonsIn 0.7s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes buttonsIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===============================
+   Right Column Animations
+================================ */
+
+.animate-right-column {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: rightColumnIn 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes rightColumnIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ===============================
+   Center Circle Pulse
+================================ */
+
+.animate-center-pulse {
+  animation: centerPulse 4s ease-in-out infinite;
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+
+/* ===============================
+   Orbit Animation
+================================ */
+
+.animate-orbit {
+  animation: orbitRotate linear infinite;
+  will-change: transform;
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit-scale {
+  animation: orbitScale 3s ease-in-out infinite;
+}
+
+@keyframes orbitScale {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+
+/* ===============================
+   Floating Abstract Cards
+================================ */
+
+.animate-float-card {
+  opacity: 0;
+  transform: scale(0);
+  animation: floatCardIn 0.6s ease forwards, floatCardMove 3s ease-in-out infinite;
+  animation-delay: inherit, 1.8s;
+}
+
+@keyframes floatCardIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatCardMove {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-orbit-cancel {
+  animation: orbitCancel linear infinite;
+  animation-duration: inherit;
+  animation-delay: inherit;
+}
+
+@keyframes orbitCancel {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+/* ===============================
+   Left + Right Column Entry
+================================ */
+.animate-left-column {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: leftColumnIn 0.8s ease forwards;
+}
+
+@keyframes leftColumnIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-right-column {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: rightColumnIn 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes rightColumnIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===============================
+   Badge Pop
+================================ */
+.animate-badge-pop {
+  transform: scale(0);
+  animation: badgePop 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes badgePop {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ===============================
+   Title Pulse
+================================ */
+.animate-title-pulse {
+  display: inline-block;
+  animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ===============================
+   Description Fade
+================================ */
+.animate-desc-fade {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: descFade 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes descFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   Buttons Fade
+================================ */
+.animate-buttons-fade {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: btnFade 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes btnFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   Energy Waves
+================================ */
+.animate-energy-wave {
+  animation: energyWave 4s ease-in-out infinite;
+  opacity: 0.3;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes energyWave {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+}
+
+/* ===============================
+   Glow Pulse
+================================ */
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* ===============================
+   Circle Rotation
+================================ */
+.animate-circle-rotate {
+  animation: circleRotate 60s linear infinite;
+}
+
+@keyframes circleRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===============================
+   Orbit Rotation Wrapper
+================================ */
+.animate-orbit {
+  animation: orbitSpin 60s linear infinite;
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* ===============================
+   Orbit Scale Pulse
+================================ */
+.animate-orbit-scale {
+  animation: orbitScale 2s ease-in-out infinite;
+}
+
+@keyframes orbitScale {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* ===============================
+   Center Icon Pulse
+================================ */
+.animate-center-icon {
+  animation: centerIconPulse 1s ease-in-out infinite;
+}
+
+@keyframes centerIconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ===============================
+   Stats Fade In
+================================ */
+.animate-stat-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: statFadeIn 0.8s ease forwards;
+}
+
+@keyframes statFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   Floating Cards FIXED (NO POSITION BUG)
+================================ */
+.animate-float-card {
+  opacity: 0;
+  transform: scale(0);
+  animation: floatCardIn 0.6s ease forwards, floatCardMove 3s ease-in-out infinite;
+  animation-delay: inherit, 1.8s;
+}
+
+@keyframes floatCardIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatCardMove {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* ===============================
+   Bottom Badge Animation
+================================ */
+.animate-bottom-badge {
+  opacity: 0;
+  transform: translate(-50%, 100px);
+  animation: bottomBadgeIn 0.8s ease forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes bottomBadgeIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+}
+
+/* =========================================
+   ORBS ANIMATION (same as motion)
+========================================= */
+
+.animate-orb-1 {
+  animation: orbPulse1 8s ease-in-out infinite;
+}
+
+@keyframes orbPulse1 {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6;
+  }
+}
+
+.animate-orb-2 {
+  animation: orbPulse2 10s ease-in-out infinite;
+}
+
+@keyframes orbPulse2 {
+  0%, 100% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+
+/* =========================================
+   PROFILE POP IN (scale 0 -> 1)
+========================================= */
+
+.animate-profile-pop {
+  opacity: 0;
+  transform: scale(0);
+  animation: profilePop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes profilePop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   AVATAR ROTATE GLOW (motion rotate 360)
+========================================= */
+
+.animate-avatar-rotate {
+  animation: avatarRotate 20s linear infinite;
+}
+
+@keyframes avatarRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   TITLE FADE UP
+========================================= */
+
+.animate-title-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: titleIn 0.8s ease forwards;
+}
+
+@keyframes titleIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   DESCRIPTION FADE
+========================================= */
+
+.animate-desc-in {
+  opacity: 0;
+  animation: descIn 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes descIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   BUTTONS FADE UP
+========================================= */
+
+.animate-buttons-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: buttonsIn 0.8s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes buttonsIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   SOCIAL LINKS FADE
+========================================= */
+
+.animate-socials-in {
+  opacity: 0;
+  animation: socialsIn 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes socialsIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   SOCIAL HOVER (replaces whileHover)
+========================================= */
+
+.social-hover {
+  transition: transform 0.3s ease;
+}
+
+.social-hover:hover {
+  transform: scale(1.1) translateY(-5px);
+}
+
+
+/* =========================================
+   GRADIENT TEXT ANIMATION (motion bgPosition)
+========================================= */
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradientTextMove 5s linear infinite;
+}
+
+@keyframes gradientTextMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* =========================================
+   SKILL CARD ENTRY
+========================================= */
+
+.animate-skill-card {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: skillCardIn 0.8s ease forwards;
+}
+
+@keyframes skillCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   SKILL CARD HOVER (replaces whileHover)
+========================================= */
+
+.skill-hover {
+  transition: transform 0.3s ease;
+}
+
+.skill-hover:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+
+/* =========================================
+   SKILL GLOW PULSE
+========================================= */
+
+.animate-skill-glow {
+  animation: glowFade 3s ease-in-out infinite;
+}
+
+@keyframes glowFade {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   PARTICLES FLOATING (motion y: [0,-100])
+========================================= */
+
+.animate-particle {
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   CITY BUILDINGS (scaleY grow)
+========================================= */
+
+.animate-building-grow {
+  transform-origin: bottom;
+  transform: scaleY(0);
+  animation: buildingGrow 0.5s ease forwards;
+}
+
+@keyframes buildingGrow {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+
+/* =========================================
+   WINDOWS BLINK (infinite)
+========================================= */
+
+.animate-window-blink {
+  animation: windowBlink 2s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+@keyframes windowBlink {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   LEFT COLUMN ENTRY (same motion x:-50)
+========================================= */
+
+.animate-left-column {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: leftColumnIn 0.8s ease forwards;
+}
+
+@keyframes leftColumnIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================
+   BADGE ENTRY (same motion y:-20)
+========================================= */
+
+.animate-badge {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: badgeIn 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes badgeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   TITLE + DESC
+========================================= */
+
+.animate-title {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: titleIn 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes titleIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-desc {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: descIn 0.7s ease forwards;
+  animation-delay: 0.35s;
+}
+
+@keyframes descIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   SEARCHBAR ENTRY (same motion y:20)
+========================================= */
+
+.animate-searchbar {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: searchbarIn 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes searchbarIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   STAT CARD ENTRY (fade up)
+========================================= */
+
+.animate-stat-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: statCardIn 0.8s ease forwards;
+}
+
+@keyframes statCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   RIGHT COLUMN ENTRY (scale 0.8 -> 1)
+========================================= */
+
+.animate-right-column {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: rightColumnIn 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes rightColumnIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   PROPERTY CARD ENTRY (fade + y:50)
+========================================= */
+
+.animate-property-card {
+  opacity: 0;
+  animation: propertyCardIn 0.8s ease forwards;
+}
+
+@keyframes propertyCardIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   PROPERTY CARD HOVER (whileHover)
+========================================= */
+
+.property-hover {
+  transition: transform 0.35s ease;
+}
+
+.property-hover:hover {
+  transform: translateY(0px) rotate(0deg) !important;
+}
+
+
+/* =========================================
+   HEART HOVER (scale 1.1)
+========================================= */
+
+.heart-hover {
+  transition: transform 0.3s ease;
+}
+
+.heart-hover:hover {
+  transform: scale(1.1);
+}
+
+
+/* =========================================
+   LOCATION PIN POP IN (scale 0 -> 1)
+========================================= */
+
+.animate-pin-pop {
+  opacity: 0;
+  transform: scale(0);
+  animation: pinPop 0.6s ease forwards;
+}
+
+@keyframes pinPop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   PIN PULSE (scale [1,1.2,1])
+========================================= */
+
+.animate-pin-pulse {
+  animation: pinPulse 2s ease-in-out infinite;
+}
+
+@keyframes pinPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+
+/* =========================================
+   PIN GLOW PULSE
+========================================= */
+
+.animate-pin-glow {
+  animation: pinGlow 2s ease-in-out infinite;
+}
+
+@keyframes pinGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+}
+
+
+/* ===============================
+   PETALS FLOATING
+================================ */
+
+.animate-petal-float {
+  animation-name: petalFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+@keyframes petalFloat {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(var(--petalX), -150px) rotate(360deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(0px, var(--petalY)) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+
+/* ===============================
+   GLOW ORBS (same motion scale+opacity)
+================================ */
+
+.animate-glow-orb-1 {
+  animation: glowOrb1 8s ease-in-out infinite;
+}
+
+@keyframes glowOrb1 {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+.animate-glow-orb-2 {
+  animation: glowOrb2 10s ease-in-out infinite;
+}
+
+@keyframes glowOrb2 {
+  0%, 100% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+
+/* ===============================
+   LEFT COLUMN ENTRY
+================================ */
+
+.animate-left-column {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: leftColumnIn 0.8s ease forwards;
+}
+
+@keyframes leftColumnIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* ===============================
+   BADGE POP (scale 0.8 -> 1)
+================================ */
+
+.animate-badge-pop {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: badgePop 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes badgePop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ===============================
+   TITLE GRADIENT ANIMATION
+================================ */
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradientTextMove 5s ease infinite;
+}
+
+@keyframes gradientTextMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* ===============================
+   DESC FADE UP
+================================ */
+
+.animate-desc-fade {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: descFade 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes descFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===============================
+   BUTTONS FADE UP
+================================ */
+
+.animate-buttons-fade {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: btnFade 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes btnFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===============================
+   STATS ENTRY + HOVER
+================================ */
+
+.animate-stat-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: statFadeIn 0.8s ease forwards;
+}
+
+@keyframes statFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats-card-hover {
+  transition: transform 0.3s ease;
+}
+
+.stats-card-hover:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+
+/* ===============================
+   RIGHT COLUMN ENTRY
+================================ */
+
+.animate-right-column {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: rightColumnIn 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes rightColumnIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ===============================
+   MAIN CARD ROCKING ROTATE
+================================ */
+
+.animate-main-card-rock {
+  animation: mainCardRock 8s ease-in-out infinite;
+}
+
+@keyframes mainCardRock {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-2deg); }
+}
+
+
+/* ===============================
+   SERVICE ICON ROTATE + SCALE
+================================ */
+
+.animate-service-icon-spin {
+  animation: serviceIconSpin 20s linear infinite;
+}
+
+@keyframes serviceIconSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+
+/* ===============================
+   SPARKLES POP (opacity + scale loop)
+================================ */
+
+.animate-sparkle-pop {
+  animation: sparklePop 2s ease-in-out infinite;
+  opacity: 0;
+  transform: scale(0);
+}
+
+@keyframes sparklePop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+
+/* ===============================
+   SERVICE ITEM ENTRY (x:-20)
+================================ */
+
+.animate-feature {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: featureIn 0.6s ease forwards;
+}
+
+@keyframes featureIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* ===============================
+   MINI FLOATING BADGES (scale in + y float)
+================================ */
+
+.animate-mini-badge {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  animation: miniBadgeIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             miniBadgeFloat ease-in-out infinite;
+  animation-delay: inherit, 1.8s;
+  animation-duration: 0.6s, var(--floatDuration);
+  will-change: transform, opacity;
+}
+
+@keyframes miniBadgeIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes miniBadgeFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+}
+
+
+/* ===============================
+   PROMO BADGE ROTATE + SCALE
+================================ */
+
+.animate-promo-badge {
+  animation: promoBadgeAnim 3s ease-in-out infinite;
+}
+
+@keyframes promoBadgeAnim {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+}
+
+
+/* ===============================
+   OPENING HOURS BADGE (bottom slide)
+================================ */
+
+.animate-opening-badge {
+  opacity: 0;
+  transform: translate(-50%, 100px);
+  animation: openingBadgeIn 0.8s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes openingBadgeIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+}
+
+/* ===============================
+   Professional Hero Animations
+================================ */
+
+/* Left Column */
+.animate-left-column-professional {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: profLeftColumn 0.8s ease forwards;
+}
+
+@keyframes profLeftColumn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Badge */
+.animate-badge-professional {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: profBadge 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes profBadge {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title */
+.animate-title-professional {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: profTitle 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes profTitle {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Description */
+.animate-desc-professional {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: profDesc 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes profDesc {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons */
+.animate-buttons-professional {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: profButtons 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes profButtons {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Divider Grow */
+
+
+@keyframes dividerGrow {
+  to {
+    width: 100%;
+  }
+}
+
+/* Bottom Stats */
+.animate-bottom-stats-professional {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: profBottomStats 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes profBottomStats {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Right Column */
+.animate-right-column-professional {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: profRightColumn 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes profRightColumn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Main Card (pulse like motion repeat) */
+.animate-main-card-professional {
+  animation: profMainPulse 4s ease-in-out infinite;
+}
+
+@keyframes profMainPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Chart Bars Grow */
+.animate-bar-grow-professional {
+  height: 0;
+  transform-origin: bottom;
+  animation: barGrowProf 0.6s ease forwards;
+  animation-delay: inherit;
+}
+
+@keyframes barGrowProf {
+  to {
+    height: var(--barHeight);
+  }
+}
+
+/* Tooltip fade (optional) */
+.animate-tooltip-professional {
+  opacity: 0;
+  animation: tooltipFade 0.4s ease forwards;
+}
+
+@keyframes tooltipFade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Metric cards fade+scale */
+.animate-metric-professional {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: metricIn 0.6s ease forwards;
+}
+
+@keyframes metricIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hover effect same as whileHover */
+.metric-hover-professional {
+  transition: transform 0.3s ease;
+}
+
+.metric-hover-professional:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+/* Floating badges */
+.animate-floating-badge-top-professional {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: badgeTopIn 0.8s ease forwards, badgeFloatTop 3s ease-in-out infinite;
+  animation-delay: 1.5s, 2.2s;
+}
+
+@keyframes badgeTopIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes badgeFloatTop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-floating-badge-bottom-professional {
+  opacity: 0;
+  animation: badgeBottomIn 0.8s ease forwards, badgeFloatBottom 4s ease-in-out infinite;
+  animation-delay: 1.7s, 2.4s;
+}
+
+@keyframes badgeBottomIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes badgeFloatBottom {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Answer Slide Animation */
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+/* OPEN STATE */
+.faq-item.active .faq-answer {
+  max-height: 500px; /* Content visible when active */
+  opacity: 1;
+}
+
+/* ICON SWITCHING */
+.icon-minus { display: none; }
+
+.faq-item.active .icon-plus { display: none; }
+.faq-item.active .icon-minus { display: block; }
+
+
+
+.particlesFall {
+  animation: particleFall linear infinite;
+}
+
+@keyframes particleFall {
+  0% {
+    transform: translateY(-100px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(80px) rotate(720deg);
+    opacity: 0;
+  }
+}
