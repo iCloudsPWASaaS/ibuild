@@ -8,6 +8,7 @@ import {
     Check,
     CheckCircle2,
     CreditCard,
+    Download,
     FileText,
     Globe,
     Layers,
@@ -32,6 +33,7 @@ import {
     Footer,
     Header,
     PricingSection,
+    SectionButton,
 } from "../../../components/index";
 import Seo from "../../../components/seo/Seo";
 import DynamicIcon from "../../../components/ui/icon";
@@ -239,6 +241,17 @@ function Hero() {
                         >
                             See how it works
                         </Button>
+                        <SectionButton
+                            href="https://drive.google.com/file/d/1TSjKYuTNWRa8ojdhVzPioQVPbJ05B9JF/view?usp=sharing"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="outline"
+                            size="lg"
+                            className="h-12 px-7 text-base"
+                        >
+                            <Download className="h-4 w-4" />
+                            Download IClouds AI Builder
+                        </SectionButton>
                     </div>
                 </Reveal>
                 <Reveal delay={0.24}>

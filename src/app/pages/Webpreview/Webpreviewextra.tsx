@@ -17,7 +17,6 @@ import { USER_DASHBOARD_ROUTE } from "../../../helper/routes";
 // doesn't pass any state, so a fetch-by-id on mount is the source of truth.
 interface PreviewLocationState {
     url?: string | null;
-    deployUrl?: string | null;
     buildError?: string | null;
 }
 
@@ -48,7 +47,6 @@ export function WebPreviewExtra() {
     const state = (location.state || {}) as PreviewLocationState;
 
     const [url, setUrl] = useState<string | null>(state.url ?? null);
-    const [deployUrl, setDeployUrl] = useState<string | null>(state.deployUrl ?? null);
     const [buildError, setBuildError] = useState<string | null>(state.buildError ?? null);
     const [statusLoading, setStatusLoading] = useState(state.url === undefined && state.buildError === undefined);
     const [appId, setAppId] = useState<string | null>(null);
@@ -134,7 +132,6 @@ export function WebPreviewExtra() {
                 if (cancelled) return;
                 if (data.success) {
                     setUrl(data.data?.url ?? data.data?.previewUrl ?? null);
-                    if (data.data?.deployUrl !== undefined) setDeployUrl(data.data.deployUrl ?? null);
                     setBuildError(data.data?.buildError ?? null);
                     if (data.data?.appId) setAppId(data.data.appId);
                     if (data.data?.appName) setAppName(data.data.appName);
@@ -190,7 +187,6 @@ export function WebPreviewExtra() {
                 if (data.data?.previewUrl || data.data?.url) {
                     setUrl(data.data?.previewUrl ?? data.data?.url);
                 }
-                if (data.data?.deployUrl !== undefined) setDeployUrl(data.data.deployUrl ?? null);
                 if (data.data?.appId) setAppId(data.data.appId);
                 if (data.data?.appName) setAppName(data.data.appName);
                 if (Array.isArray(data.data?.instructions)) setInstructions(data.data.instructions);
@@ -561,21 +557,7 @@ export function WebPreviewExtra() {
                                     </a>
                                 </div>
                             )}
-                            {deployUrl && deployUrl !== url && (
-                                <div className="flex items-center justify-between gap-2 text-xs">
-                                    <span className="text-primary2 shrink-0">Deploy URL</span>
-                                    <a
-                                        href={deployUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-primary font-semibold hover:underline inline-flex items-center gap-1 min-w-0"
-                                    >
-                                        <span className="truncate">{deployUrl}</span>
-                                        <ExternalLink className="w-3 h-3 shrink-0" />
-                                    </a>
-                                </div>
-                            )}
-                            {!url && !deployUrl && (configOnly || !deployEnabled) && (
+                            {!url && (configOnly || !deployEnabled) && (
                                 <p className="text-xs text-primary2">
                                     {configOnly
                                         ? "This project is edited locally — download it below and open it in opencode."
