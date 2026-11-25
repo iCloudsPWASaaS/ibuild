@@ -12,11 +12,14 @@ import { postPreference } from "../../../api/postapi";
 import { toast } from "react-toastify";
 import ConfirmModal from "../../../components/ui/confirmmodal";
 
+const BUILDER_SUBDOMAINS = ["ibuild", "ipro", "iflow", "imax"];
+
 const getSubdomain = () => {
     const parts = window.location.hostname.split(".");
     if (parts.length <= 2) return "";
     const sub = parts[0].toLowerCase();
-    return sub === "www" ? "" : sub;
+    if (sub === "www" || !BUILDER_SUBDOMAINS.includes(sub)) return "";
+    return sub;
 };
 
 const MAIN_SUBDOMAINS = [((import.meta.env.VITE_MAIN_SUBDOMAIN as string) || "ibuild").toLowerCase()];
@@ -94,6 +97,7 @@ export function WebsiteTypePage() {
     const websitetypedata = useMemo(() => {
         const query = normalizeCategory(searchQuery);
         const typedData = data as WebsiteTypeItem[] | undefined;
+        const hasSlugs = typedData?.some((item) => normalizeCategory(item.slug) !== "") ?? false;
         return typedData?.filter((item) => {
             const type = normalizeCategory(item.type);
             const desc = normalizeCategory(item.shortDescription);
@@ -103,7 +107,7 @@ export function WebsiteTypePage() {
 
             if (!type.includes(query) && !desc.includes(query) && !category.includes(query) && !agents.includes(query) && !connectors.includes(query)) return false;
 
-            if (subdomain && !MAIN_SUBDOMAINS.includes(subdomain)) {
+            if (subdomain && !MAIN_SUBDOMAINS.includes(subdomain) && hasSlugs) {
                 const slug = normalizeCategory(item.slug);
                 if (!slug.includes(subdomain)) return false;
             }
