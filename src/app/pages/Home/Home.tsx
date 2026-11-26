@@ -16,12 +16,15 @@ import {
     LayoutGrid,
     Lock,
     MessageSquare,
+    Monitor,
     Plug,
     Rocket,
     Search,
     ShieldCheck,
     ShoppingBag,
+    Smartphone,
     Sparkles,
+    Wifi,
     Workflow,
     X,
     type LucideIcon,
@@ -195,6 +198,36 @@ const useCases: UseCase[] = [
     { icon: Bot, title: "Everyday help", description: "Practical help for home, family, health routines and small tasks." },
 ];
 
+const ANDROID_APP_URL =
+    "https://drive.google.com/file/d/1wAykJnqJJTb08LdhFyJjDCHixfk0XgFP/view?usp=sharing";
+
+const remoteFeatures: Feature[] = [
+    {
+        icon: Monitor,
+        title: "Your workstation does the work",
+        description: "Keep IClouds running on your office or home office PC while you move around.",
+        tone: "bg-indigo-500/15 text-indigo-300",
+    },
+    {
+        icon: Smartphone,
+        title: "Your Android phone is the remote",
+        description: "Start tasks, check progress and give instructions from anywhere.",
+        tone: "bg-emerald-500/15 text-emerald-300",
+    },
+    {
+        icon: Wifi,
+        title: "Work from anywhere",
+        description: "Stay connected to your desk, your files and your AI helpers on the go.",
+        tone: "bg-sky-500/15 text-sky-300",
+    },
+    {
+        icon: ShieldCheck,
+        title: "Approvals stay with you",
+        description: "Important actions wait for your go-ahead, even when you are away from the PC.",
+        tone: "bg-rose-500/15 text-rose-300",
+    },
+];
+
 function Hero() {
     const scrollToWorkflow = () => {
         document.getElementById("workflow")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -229,30 +262,46 @@ function Hero() {
                     </p>
                 </Reveal>
                 <Reveal delay={0.18}>
-                    <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-                        <Button path={WEBSITE_TYPE_ROUTE} size="lg" arrow={true} className="h-12 px-7 text-base">
+                    <div className="mt-9 flex flex-wrap justify-center gap-3">
+                        <Button path={WEBSITE_TYPE_ROUTE} size="lg" arrow={true} className="agi-cta agi-cta-primary">
                             Choose an AI service
                         </Button>
                         <Button
                             variant="outline"
                             size="lg"
                             onClick={scrollToWorkflow}
-                            className="h-12 px-7 text-base"
+                            className="agi-cta agi-cta-secondary"
                         >
                             See how it works
                         </Button>
+                        <SectionButton
+                            href={ANDROID_APP_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            size="lg"
+                            className="agi-cta agi-cta-primary"
+                        >
+                            <Smartphone className="h-4 w-4" />
+                            Download Android App
+                        </SectionButton>
                         <SectionButton
                             href="https://drive.google.com/file/d/1TSjKYuTNWRa8ojdhVzPioQVPbJ05B9JF/view?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
                             variant="outline"
                             size="lg"
-                            className="h-12 px-7 text-base"
+                            className="agi-cta agi-cta-secondary"
                         >
                             <Download className="h-4 w-4" />
-                            Download IClouds AI Builder
+                            Download Windows App
                         </SectionButton>
                     </div>
+                </Reveal>
+                <Reveal delay={0.21}>
+                    <p className="mx-auto mt-4 max-w-3xl text-center text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                        Deploy the Windows app on your workstation or home-office PC. Use the Android app as the secure remote
+                        console to monitor, control and approve work from anywhere via web/cloud.
+                    </p>
                 </Reveal>
                 <Reveal delay={0.24}>
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground">
@@ -324,6 +373,128 @@ function PlatformSection() {
                             </Reveal>
                         );
                     })}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function RemoteControlSection() {
+    return (
+        <section id="remote" className="agi-control-section relative overflow-hidden border-y border-white/10 py-24">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+                <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-indigo-500/25 blur-3xl" />
+                <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
+            </div>
+            <div className="container mx-auto max-w-7xl px-4">
+                <div className="grid items-center gap-16 lg:grid-cols-2">
+                    <div>
+                        <Reveal delay={0.06}>
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Android remote app</p>
+                            <h2 className="agi-display mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                                Run everything from <span className="agi-accent-text">anywhere.</span>
+                            </h2>
+                        </Reveal>
+                        <Reveal delay={0.12}>
+                            <p className="mt-5 text-base leading-relaxed text-slate-300/80">
+                                Set up IClouds on your work or home office workstation, then use the Android app to control it
+                                remotely. Your PC keeps working while you stay in charge from your phone.
+                            </p>
+                        </Reveal>
+
+                        <Reveal delay={0.16}>
+                            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                                <div className="agi-control-card rounded-2xl border p-4">
+                                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                                        <Monitor className="h-4 w-4 text-indigo-300" />
+                                        Windows workstation app
+                                    </div>
+                                    <p className="mt-2 text-xs leading-relaxed text-slate-300/70">
+                                        Install on your office or home-office PC. It runs your workflows and keeps the system
+                                        available.
+                                    </p>
+                                </div>
+                                <div className="agi-control-card rounded-2xl border p-4">
+                                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                                        <Smartphone className="h-4 w-4 text-cyan-300" />
+                                        Android remote console
+                                    </div>
+                                    <p className="mt-2 text-xs leading-relaxed text-slate-300/70">
+                                        Connect over web/cloud to monitor, control and approve work from wherever you are.
+                                    </p>
+                                </div>
+                            </div>
+                        </Reveal>
+
+                        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                            {remoteFeatures.map((feature, index) => {
+                                const Icon = feature.icon;
+                                return (
+                                    <Reveal key={feature.title} delay={0.12 + index * 0.06}>
+                                        <div className="agi-control-card h-full rounded-2xl border p-5">
+                                            <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${feature.tone}`}>
+                                                <Icon className="h-5 w-5" />
+                                            </span>
+                                            <h3 className="mt-4 text-sm font-bold text-white">{feature.title}</h3>
+                                            <p className="mt-2 text-xs leading-relaxed text-slate-300/70">{feature.description}</p>
+                                        </div>
+                                    </Reveal>
+                                );
+                            })}
+                        </div>
+
+                        <Reveal delay={0.3}>
+                            <div className="mt-9 flex flex-wrap items-center gap-3">
+                                <SectionButton
+                                    href={ANDROID_APP_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    size="lg"
+                                    className="agi-cta agi-cta-primary"
+                                >
+                                    <Smartphone className="h-4 w-4" />
+                                    Download Android App
+                                </SectionButton>
+                                <span className="text-xs text-slate-300/70">
+                                    Requires the Windows app on your workstation
+                                </span>
+                            </div>
+                        </Reveal>
+                    </div>
+
+                    <Reveal delay={0.2}>
+                        <div className="agi-control-card rounded-3xl border p-5 sm:p-7">
+                            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                                <div className="flex items-center gap-2">
+                                    <Monitor className="h-4 w-4 text-cyan-300" />
+                                    <span className="text-xs font-semibold uppercase tracking-widest text-slate-300/70">
+                                        Workstation
+                                    </span>
+                                </div>
+                                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2.5 py-1 text-xs font-semibold text-emerald-300">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                    Online
+                                </span>
+                            </div>
+                            <div className="mt-6 space-y-3 text-sm leading-relaxed">
+                                <p className="text-slate-400">Connected from your Android phone…</p>
+                                <p className="font-semibold text-emerald-300">✓ Task started on your PC</p>
+                                <p className="text-slate-400">Waiting for your approval on one action…</p>
+                                <p className="font-semibold text-emerald-300">✓ Approved remotely</p>
+                            </div>
+                            <div className="mt-7 rounded-2xl border border-white/10 bg-white/5 p-4">
+                                <div className="flex items-center gap-3">
+                                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+                                        <Wifi className="h-4 w-4" />
+                                    </span>
+                                    <div>
+                                        <p className="text-sm font-semibold text-white">In control, wherever you are</p>
+                                        <p className="text-xs text-slate-300/70">Your office desk is always one tap away.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
                 </div>
             </div>
         </section>
@@ -443,7 +614,7 @@ function UseCasesSection() {
 
                 <Reveal delay={0.2}>
                     <div className="mt-12 text-center">
-                        <Button path={WEBSITE_TYPE_ROUTE} variant="outline" size="lg" arrow={true} className="h-12 px-7">
+                        <Button path={WEBSITE_TYPE_ROUTE} variant="outline" size="lg" arrow={true} className="agi-cta agi-cta-secondary">
                             Explore all AI services
                         </Button>
                     </div>
@@ -677,7 +848,7 @@ function BusinessTypesSection({ items }: { items: WebsiteTypeItem[] }) {
                         )}
 
                         <div className="mt-8 flex justify-center">
-                            <Button path={WEBSITE_TYPE_ROUTE} variant="outline" size="lg" arrow={true} className="h-11 px-6">
+                            <Button path={WEBSITE_TYPE_ROUTE} variant="outline" size="lg" arrow={true} className="agi-cta agi-cta-secondary">
                                 Browse all AI services
                             </Button>
                         </div>
@@ -718,6 +889,7 @@ export function LandingPage() {
             <main>
                 <Hero />
                 <PlatformSection />
+                <RemoteControlSection />
                 <WorkflowSection />
                 <UseCasesSection />
                 <BusinessTypesSection items={(websiteTypes as WebsiteTypeItem[]) || []} />
@@ -757,7 +929,7 @@ function CTASection() {
                                     path={WEBSITE_TYPE_ROUTE}
                                     size="lg"
                                     arrow={true}
-                                    className="h-12 bg-primary px-7 text-base text-primary-foreground hover:bg-primary/90"
+                                    className="agi-cta agi-cta-primary"
                                 >
                                     Choose an AI service
                                 </Button>
@@ -765,7 +937,7 @@ function CTASection() {
                                     path={CONTACT_US_ROUTE}
                                     variant="outline"
                                     size="lg"
-                                    className="h-12 border-border px-7 text-base hover:bg-muted"
+                                    className="agi-cta agi-cta-secondary"
                                 >
                                     Ask us a question
                                 </Button>
