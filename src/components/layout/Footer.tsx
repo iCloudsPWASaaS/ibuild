@@ -57,12 +57,12 @@ export function Footer({ brandName }: { brandName?: string }) {
   }, [displayBrandName]);
 
     return (
-        <footer ref={containerRef} className="relative bg-[var(--footer-bg)] text-[var(--footer-text)] pt-20 px-6 overflow-hidden font-sans border-t border-black/5">
-            <div className="container px-4 mx-auto max-w-7xl relative z-10 mb-20 flex flex-col h-full">
+        <footer ref={containerRef} className="relative bg-[var(--footer-bg)] text-[var(--footer-text)] pt-10 px-6 overflow-hidden font-sans border-t border-black/5">
+            <div className="container px-4 mx-auto max-w-7xl relative z-10 mb-8 flex flex-col h-full">
 
-                <div className="grid lg:grid-cols-5 gap-12 mb-5 md:mb-24">
+                <div className="grid lg:grid-cols-5 gap-8 mb-6 md:mb-8">
                     <div className="lg:col-span-2 flex flex-col items-start">
-                        <Link to="/" className="inline-block mb-6">
+                        <Link to="/" className="inline-block mb-3">
                            <div className="flex items-center gap-3">
                                 <img src="/logo.png" alt="IClouds AI logo" className="h-12 w-12 object-contain" />
                                 <div className="flex flex-col gap-1">
@@ -77,9 +77,9 @@ export function Footer({ brandName }: { brandName?: string }) {
                     </div>
 
                     <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8 w-full">
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
                             <h4 className="font-bold text-[var(--footer-text)] text-base">Explore</h4>
-                            <ul className="space-y-3 text-sm text-[var(--footer-text-muted)]">
+                            <ul className="space-y-2 text-sm text-[var(--footer-text-muted)]">
                                 <li><Link to={HOME_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">Home</Link></li>
                                 <li><Link to={PRICING_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">Pricing</Link></li>
                                 <li><Link to={HOW_IT_WORK_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">How it works</Link></li>
@@ -89,9 +89,9 @@ export function Footer({ brandName }: { brandName?: string }) {
                             </ul>
                         </div>
 
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
                             <h4 className="font-bold text-[var(--footer-text)] text-base">Policy Links</h4>
-                            <ul className="space-y-3 text-sm text-[var(--footer-text-muted)]">
+                            <ul className="space-y-2 text-sm text-[var(--footer-text-muted)]">
                                 <li>
                                     <Link to={PRIVACY_POLICY_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">Privacy Policy</Link>
                                 </li>
@@ -105,9 +105,9 @@ export function Footer({ brandName }: { brandName?: string }) {
                             </ul>
                         </div>
 
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
                             <h4 className="font-bold text-[var(--footer-text)] text-base">Quick Link</h4>
-                            <ul className="space-y-3 text-sm text-[var(--footer-text-muted)]">
+                            <ul className="space-y-2 text-sm text-[var(--footer-text-muted)]">
                                 <li><Link to={LOGIN_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">Login</Link></li>
                                 <li><Link to={REGISTER_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">Sign Up</Link></li>
                                 <li><Link to={WEBSITE_TYPE_ROUTE} className="hover:text-[var(--footer-text)] transition-colors">Describe an idea</Link></li>
@@ -117,8 +117,8 @@ export function Footer({ brandName }: { brandName?: string }) {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 border-b border-black/5 pb-10">
-                    <h3 className="text-xl font-bold text-[var(--footer-text)] tracking-tight">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 border-b border-black/5 pb-5">
+                    <h3 className="text-lg font-bold text-[var(--footer-text)] tracking-tight">
                         Get the latest updates from {displayBrandName}
                     </h3>
 
@@ -132,7 +132,7 @@ export function Footer({ brandName }: { brandName?: string }) {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Email address"
-                                    className="w-full h-12 pl-4 pr-32 bg-white rounded-lg text-sm text-[var(--footer-text)] placeholder:text-[var(--footer-text-muted)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)] transition-all border border-[var(--border)]"
+                                    className="w-full h-10 pl-4 pr-32 bg-white rounded-lg text-sm text-[var(--footer-text)] placeholder:text-[var(--footer-text-muted)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)] transition-all border border-[var(--border)]"
                                 />
                                 <button type="submit" className="absolute right-2 top-1 bottom-1 px-4 flex items-center gap-2 rounded-md text-sm font-medium text-primary hover-primary transition-colors">
                                     Subscribe <ArrowRight className="w-4 h-4" />
@@ -168,7 +168,7 @@ export function Footer({ brandName }: { brandName?: string }) {
                     </div>
                 </div>
 
-                <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6 pt-8 text-[var(--footer-text-muted)] text-sm pb-2">
+                <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 pt-4 text-[var(--footer-text-muted)] text-sm pb-1">
                  
                     <p className="leading-relaxed">Copyright © <span className="text-primary">{displayBrandName}</span> {new Date().getFullYear()} All rights reserved.</p>
                     <div className="flex gap-8">
