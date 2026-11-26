@@ -391,7 +391,7 @@ function RemoteControlSection() {
                     <div>
                         <Reveal delay={0.06}>
                             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">Android remote app</p>
-                            <h2 className="agi-display mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                            <h2 className="agi-display mt-4 text-4xl font-bold tracking-tight agi-control-text sm:text-5xl lg:text-6xl">
                                 Run everything from <span className="agi-accent-text">anywhere.</span>
                             </h2>
                         </Reveal>
@@ -405,7 +405,7 @@ function RemoteControlSection() {
                         <Reveal delay={0.16}>
                             <div className="mt-6 grid gap-3 sm:grid-cols-2">
                                 <div className="agi-control-card rounded-2xl border p-4">
-                                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                                    <div className="flex items-center gap-2 text-sm font-semibold agi-control-text">
                                         <Monitor className="h-4 w-4 text-indigo-300" />
                                         Windows workstation app
                                     </div>
@@ -415,7 +415,7 @@ function RemoteControlSection() {
                                     </p>
                                 </div>
                                 <div className="agi-control-card rounded-2xl border p-4">
-                                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                                    <div className="flex items-center gap-2 text-sm font-semibold agi-control-text">
                                         <Smartphone className="h-4 w-4 text-cyan-300" />
                                         Android remote console
                                     </div>
@@ -435,7 +435,7 @@ function RemoteControlSection() {
                                             <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${feature.tone}`}>
                                                 <Icon className="h-5 w-5" />
                                             </span>
-                                            <h3 className="mt-4 text-sm font-bold text-white">{feature.title}</h3>
+                                            <h3 className="mt-4 text-sm font-bold agi-control-text">{feature.title}</h3>
                                             <p className="mt-2 text-xs leading-relaxed text-slate-300/70">{feature.description}</p>
                                         </div>
                                     </Reveal>
@@ -488,7 +488,7 @@ function RemoteControlSection() {
                                         <Wifi className="h-4 w-4" />
                                     </span>
                                     <div>
-                                        <p className="text-sm font-semibold text-white">In control, wherever you are</p>
+                                        <p className="text-sm font-semibold agi-control-text">In control, wherever you are</p>
                                         <p className="text-xs text-slate-300/70">Your office desk is always one tap away.</p>
                                     </div>
                                 </div>

@@ -1512,3 +1512,8 @@ html.user-area [data-slot="button"] svg {
   color: inherit !important;
   transition: transform 0.2s ease !important;
 }
+
+.agi-theme .agi-control-section .agi-control-text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
