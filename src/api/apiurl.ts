@@ -45,6 +45,7 @@ const APIURL = {
     POST_SUPPORT_TICKET: 'postsupportticket',
     POST_TICKET_REPLY: 'postticketreply',
     POST_CHECKOUT: 'checkout',
+    POST_CANCEL_SUBSCRIPTION: 'cancelsubscription',
     //POST_PREFERENCE: 'preferance',
     POST_PREFERENCE: 'generate-app-opencode', //extra
 

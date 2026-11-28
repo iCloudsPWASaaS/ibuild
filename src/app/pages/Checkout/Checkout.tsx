@@ -44,9 +44,13 @@ export function CheckoutPage() {
         return Number(priceStr.toString().replace(/[^0-9.]/g, ''));
     };
 
-    const amount = parsePrice(state?.price);
-    const productName = state?.planName;
-    const billingtype = state?.billingCycle;
+    const purchaseType = state?.purchaseType;
+    const isAiTopup = purchaseType === "ai_topup";
+    const aiCreditUsd = Number(state?.aiCreditUsd || 0);
+    const topupAmount = Number((aiCreditUsd * 1.2).toFixed(2));
+    const amount = isAiTopup ? topupAmount : parsePrice(state?.price);
+    const productName = isAiTopup ? "AI Usage Top-up" : state?.planName;
+    const billingtype = isAiTopup ? "monthly" : state?.billingCycle;
     const currency = currencycode;
     const productId = state?.productId;
     const discount = state?.discount;
@@ -57,12 +61,15 @@ export function CheckoutPage() {
 
     useEffect(() => {
         if (data) {
-            setPaymentMethods(data);
-            if (data.length > 0 && !selectedMethod) {
-                setSelectedMethod(data[0].name);
+            const methods: PaymentMethod[] = isAiTopup
+                ? data.filter((method: PaymentMethod) => method.name.toLowerCase() === "stripe")
+                : data;
+            setPaymentMethods(methods);
+            if (methods.length > 0 && !selectedMethod) {
+                setSelectedMethod(methods[0].name);
             }
         }
-    }, [data]);
+    }, [data, isAiTopup, selectedMethod]);
 
     const getSelectedMethodDetails = (): PaymentMethod | undefined => {
         return paymentMethods.find(method => method.name === selectedMethod);
@@ -74,30 +81,24 @@ export function CheckoutPage() {
     const methodSymbol = currentMethod?.currencySymbol || currencysymbol;
 
     const handleConfirmPayment = async () => {
-        let payload = {
+        const buildPayload = (nonce: string | null = null) => ({
             gateway: selectedMethod,
             productId: productId,
-            billingType: billingtype?.toLowerCase(),
+            billingType: isAiTopup ? "monthly" : billingtype?.toLowerCase(),
             amount: amount,
             currency: currency,
             charge: processingCharge.toString(),
-            nonce: null
-        };
+            nonce: nonce,
+            ...(isAiTopup ? { purchaseType: "ai_topup", aiCreditUsd: Number(aiCreditUsd) } : {}),
+        });
+        let payload = buildPayload();
         if (selectedMethod == "braintree") {
             if (!instance) {
                 toast.error("Payment UI not ready. Please try another method.");
                 return;
             }
             const { nonce } = await instance.requestPaymentMethod();
-            payload = {
-                gateway: selectedMethod,
-                productId: productId,
-                billingType: billingtype?.toLowerCase(),
-                amount: amount,
-                currency: currency,
-                charge: processingCharge.toString(),
-                nonce: nonce
-            };
+            payload = buildPayload(nonce);
         }
         // return;
         mutate(payload, {
@@ -130,7 +131,7 @@ export function CheckoutPage() {
             <SectionHeader
                 variant="hero"
                 badge="Secure Payment"
-                title="Checkout"
+                title={isAiTopup ? "AI Usage Top-up" : "Checkout"}
                 description="Complete your purchase securely"
             />
 
@@ -177,6 +178,11 @@ export function CheckoutPage() {
                                                 <span className="text-xs text-primary2 dark:text-zinc-400 font-medium tracking-wide uppercase">
                                                     PAY IN {method.currency}
                                                 </span>
+                                                {!isAiTopup && method.name.toLowerCase() === "stripe" && (
+                                                    <span className="mt-1 text-[11px] text-primary2 dark:text-zinc-400">
+                                                        {String(billingtype).toLowerCase() === "yearly" ? "Renews yearly" : "Renews monthly"}
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
 
@@ -220,18 +226,33 @@ export function CheckoutPage() {
 
                                 <div className="border-t dark:border-zinc-800 my-4" />
 
-                                <div className="flex justify-between items-center text-sm">
-                                    <span className="text-primary2 dark:text-zinc-400">Amount</span>
-                                    <span className="text-black  font-medium">{discountprice} {currency}</span>
-                                </div>
-                                {(!discount || discount <= 0) ? "" :
-                                    <div className="flex justify-between items-center text-sm">
-                                        <div className="flex items-center gap-1 text-primary2 dark:text-zinc-400">
-                                            <span>Discount</span>
+                                {isAiTopup ? (
+                                    <>
+                                        <div className="flex justify-between items-center text-sm">
+                                            <span className="text-primary2 dark:text-zinc-400">Purchased Credit</span>
+                                            <span className="text-black font-medium">${aiCreditUsd.toFixed(2)}</span>
                                         </div>
-                                        <span className="text-red-500 font-medium">- {discount}%</span>
-                                    </div>
-                                }
+                                        <div className="flex justify-between items-center text-sm">
+                                            <span className="text-primary2 dark:text-zinc-400">Charged Amount</span>
+                                            <span className="text-black font-medium">${topupAmount.toFixed(2)} {currency}</span>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="flex justify-between items-center text-sm">
+                                            <span className="text-primary2 dark:text-zinc-400">Amount</span>
+                                            <span className="text-black  font-medium">{discountprice} {currency}</span>
+                                        </div>
+                                        {(!discount || discount <= 0) ? "" :
+                                            <div className="flex justify-between items-center text-sm">
+                                                <div className="flex items-center gap-1 text-primary2 dark:text-zinc-400">
+                                                    <span>Discount</span>
+                                                </div>
+                                                <span className="text-red-500 font-medium">- {discount}%</span>
+                                            </div>
+                                        }
+                                    </>
+                                )}
                                 <div className="flex justify-between items-center text-sm">
                                     <div className="flex items-center gap-1 text-primary2 dark:text-zinc-400">
                                         <span>Processing Charge</span>

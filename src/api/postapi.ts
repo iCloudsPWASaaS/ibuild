@@ -120,6 +120,16 @@ export const poscheckout = async (payload: any) => {
     }
 }
 
+export const postcancelsubscription = async () => {
+    try {
+        const res = await api.post(APIURL.POST_CANCEL_SUBSCRIPTION)
+        return res?.data
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
 export const postPreference = async (payload: any) => {
     try {
         const res = await aiApi.post(APIURL.POST_PREFERENCE, payload)

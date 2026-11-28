@@ -12,26 +12,39 @@ import { useCountry } from "../../../hooks/useCountry";
 import { useQuery } from "@tanstack/react-query";
 import { getstate } from "../../../api/baseapi";
 import { useDeleteAccount } from "../../../hooks/useDeleteaccount";
+import { useCancelSubscription } from "../../../hooks/useCancelSubscription";
 import { useNavigate, useSearchParams } from "react-router";
-import { PRICING_ROUTE, HOME_ROUTE, PROFILE_SETTING_ROUTE } from "../../../helper/routes";
+import { PRICING_ROUTE, HOME_ROUTE, PROFILE_SETTING_ROUTE, CHECKOUT_ROUTE } from "../../../helper/routes";
 import Seo from "../../../components/seo/Seo";
 
 export function ProfileSettingsPage() {
 
     const token = localStorage.getItem("accessToken") || "";
-    const { data, isLoading } = useUserdata(token)
+    const { data, isLoading, refetch } = useUserdata(token)
     const country = useCountry();
     const navigate = useNavigate();
     const { mutate: updateProfile } = useProfileinfo();
     const { mutate: changePassword } = useChangepassword();
     const { mutate: deleteAccount } = useDeleteAccount();
+    const { mutate: cancelSubscription, isPending: isCancelSubscriptionPending } = useCancelSubscription();
     const { mutate } = useUpdateNotifications();
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const baseurl = APIURL.BASE_URL;
     const [searchParams, setSearchParams] = useSearchParams();
     const activeTab = searchParams.get("tab") || "profile";
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isTopupModalOpen, setIsTopupModalOpen] = useState(false);
+    const [isCancelSubscriptionModalOpen, setIsCancelSubscriptionModalOpen] = useState(false);
+    const [aiCredit, setAiCredit] = useState("5");
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const subscription = data?.subscription;
+    const costLimit = subscription?.costLimit ?? subscription?.monthlyCostLimit ?? 0;
+    const billingPeriod = subscription?.billingType === "yearly" ? "year" : "month";
+    const isStripeSubscription = subscription?.gateway === "stripe" && !!subscription?.stripeSubscriptionId;
+    const topupCredit = Number(subscription?.aiUsage?.topupCredit || 0);
+    const aiCreditValue = Number(aiCredit);
+    const isAiCreditValid = Number.isFinite(aiCreditValue) && aiCreditValue >= 5 && aiCreditValue <= 100;
+    const aiTopupCharge = (Number.isFinite(aiCreditValue) ? aiCreditValue * 1.2 : 0).toFixed(2);
     console.log(" data?.user---", data?.user?.isPass)
     const [profileData, setProfileData] = useState({
         firstName: data?.user?.firstName || "",
@@ -213,6 +226,40 @@ export function ProfileSettingsPage() {
                 setIsDeleteModalOpen(false);
             }
         })
+    };
+
+    const handleBuyMoreAiUsage = () => {
+        if (!isAiCreditValid) return;
+        navigate(CHECKOUT_ROUTE, {
+            state: {
+                planName: "AI Usage Top-up",
+                purchaseType: "ai_topup",
+                aiCreditUsd: Number(aiCreditValue),
+                price: (aiCreditValue * 1.2).toFixed(2),
+                productId: subscription?.planId,
+                billingCycle: "monthly"
+            }
+        });
+        setIsTopupModalOpen(false);
+    };
+
+    const handleCancelSubscription = () => {
+        cancelSubscription(undefined, {
+            onSuccess: (response: { success?: boolean; message?: string } | undefined) => {
+                setIsCancelSubscriptionModalOpen(false);
+                if (response?.success === false) {
+                    toast.error(response?.message || "Failed to cancel subscription.");
+                    return;
+                }
+                toast.success(response?.message || "Subscription cancellation scheduled.");
+                refetch();
+            },
+            onError: (error) => {
+                const axiosError = error as Error & { response?: { data?: { message?: string } } };
+                setIsCancelSubscriptionModalOpen(false);
+                toast.error(axiosError.response?.data?.message || axiosError.message || "Failed to cancel subscription.");
+            }
+        });
     };
 
     return (
@@ -470,6 +517,18 @@ export function ProfileSettingsPage() {
                             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
                                 <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border dark:border-zinc-800 p-6 md:p-8">
                                     <h2 className="text-2xl font-bold mb-6 text-black dark:text-white">Current Plan</h2>
+                                    {isStripeSubscription && (
+                                        <div className="mb-4 flex flex-col gap-3 rounded-xl border border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-800/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                                            <span className={`w-fit rounded-full px-3 py-1 text-sm font-medium ${subscription?.cancelAtPeriodEnd ? "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"}`}>
+                                                {subscription?.cancelAtPeriodEnd ? "Cancellation scheduled" : "Auto-renews"}
+                                            </span>
+                                            {!subscription?.cancelAtPeriodEnd && (
+                                                <Button variant="outline" size="sm" onClick={() => setIsCancelSubscriptionModalOpen(true)} className="text-black dark:text-zinc-200 dark:border-zinc-700 dark:hover:bg-zinc-800">
+                                                    Cancel at period end
+                                                </Button>
+                                            )}
+                                        </div>
+                                    )}
                                     {data?.subscription?.isActive ? (
                                         <div className="gradient-primary hover-primary text-white rounded-xl p-6 mb-6">
                                             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
@@ -503,15 +562,23 @@ export function ProfileSettingsPage() {
                                     </div>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                                         <div className="p-4 bg-badge-primary rounded-xl text-center">
-                                            <div className="text-3xl font-bold badge-text-primary">${Number(data?.subscription?.aiUsage?.cost || 0).toFixed(2)}</div>
+                                            <div className="text-3xl font-bold badge-text-primary">${Number(subscription?.aiUsage?.cost || 0).toFixed(2)}</div>
                                             <div className="text-sm text-primary2 dark:text-zinc-400 mt-1">
-                                                AI Usage {!data?.subscription ? "(No active plan)" : (data.subscription.costLimit ?? data.subscription.monthlyCostLimit) === 0 ? "(Unlimited)" : `of $${data.subscription.costLimit ?? data.subscription.monthlyCostLimit} / ${data.subscription.billingType === "yearly" ? "year" : "month"}`}
+                                                AI Usage {!subscription ? "(No active plan)" : costLimit === 0 ? "(Unlimited)" : `of $${costLimit} / ${billingPeriod}`}
                                             </div>
+                                            {topupCredit > 0 && (
+                                                <div className="mt-2 inline-flex rounded-full bg-badge-primary px-3 py-1 text-xs font-medium text-primary2 dark:text-zinc-400">
+                                                    Top-up credit: ${topupCredit.toFixed(2)}
+                                                </div>
+                                            )}
                                         </div>
                                         <div className="p-4 bg-badge-primary rounded-xl text-center">
-                                            <div className="text-3xl font-bold badge-text-primary">{Number(data?.subscription?.aiUsage?.totalTokens || 0).toLocaleString()}</div>
+                                            <div className="text-3xl font-bold badge-text-primary">{Number(subscription?.aiUsage?.totalTokens || 0).toLocaleString()}</div>
                                             <div className="text-sm text-primary2 dark:text-zinc-400 mt-1">AI Tokens Used</div>
                                         </div>
+                                    </div>
+                                    <div className="mt-4 flex justify-end">
+                                        <Button onClick={() => { setAiCredit("5"); setIsTopupModalOpen(true); }}>Buy more AI usage</Button>
                                     </div>
                                 </div>
                             </motion.div>
@@ -520,6 +587,58 @@ export function ProfileSettingsPage() {
                 </div>
             </section>
             <Footer />
+            <AnimatePresence>
+                {isTopupModalOpen && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border dark:border-zinc-800">
+                            <div className="p-6 md:p-8">
+                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Buy more AI usage</h3>
+                                <p className="mt-2 text-sm text-gray-500 dark:text-zinc-400">Add AI credit to your current billing period.</p>
+                                <div className="mt-6 space-y-2">
+                                    <Label htmlFor="aiCredit" className="text-black dark:text-zinc-200">AI credit (USD)</Label>
+                                    <Input
+                                        id="aiCredit"
+                                        type="number"
+                                        min={5}
+                                        max={100}
+                                        step={0.01}
+                                        value={aiCredit}
+                                        onChange={(e) => setAiCredit(e.target.value)}
+                                    />
+                                    <p className="text-xs text-primary2 dark:text-zinc-400">Minimum $5 · Maximum $100</p>
+                                </div>
+                                <div className="mt-4 flex items-center justify-between rounded-xl bg-gray-50 dark:bg-zinc-800/50 px-4 py-3 text-sm">
+                                    <span className="text-primary2 dark:text-zinc-400">Charge</span>
+                                    <span className="font-bold text-black dark:text-white">${aiTopupCharge}</span>
+                                </div>
+                                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-end">
+                                    <Button variant="outline" onClick={() => setIsTopupModalOpen(false)} className="text-gray-700 dark:text-zinc-200 dark:border-zinc-700">Cancel</Button>
+                                    <Button onClick={handleBuyMoreAiUsage} disabled={!isAiCreditValid}>Continue to checkout</Button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+            <AnimatePresence>
+                {isCancelSubscriptionModalOpen && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border dark:border-zinc-800">
+                            <div className="p-6 md:p-8 text-center">
+                                <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <AlertTriangle className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+                                </div>
+                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Cancel auto-renewal?</h3>
+                                <p className="text-gray-500 dark:text-zinc-400 mb-8">Your plan stays active until the end of the current billing period.</p>
+                                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                                    <Button variant="outline" onClick={() => setIsCancelSubscriptionModalOpen(false)} disabled={isCancelSubscriptionPending} className="text-gray-700 dark:text-zinc-200 border-gray-300 dark:border-zinc-700">Keep auto-renewal</Button>
+                                    <Button variant="destructive" onClick={handleCancelSubscription} disabled={isCancelSubscriptionPending}>Confirm cancellation</Button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
             <AnimatePresence>
                 {isDeleteModalOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
